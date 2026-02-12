@@ -286,10 +286,20 @@ class LocationInfoEngine:
         # Coba dapatkan koordinat
         coords = LocationInfoEngine.get_city_coordinates(location_name)
         
+        # Dapatkan timezone dari phonenumbers
+        tz = "Asia/Jakarta"  # Default
+        try:
+            parsed = phonenumbers.parse(phone_number, None)
+            tz_list = timezone.time_zones_for_number(parsed)
+            if tz_list:
+                tz = list(tz_list)[0]
+        except:
+            pass
+        
         result = {
             "city": location_name,
             "province": coords["province"] if coords else "Unknown",
-            "timezone": coords["timezone"] if coords else await TimeZoneEngine.get_timezone(phone_number),
+            "timezone": coords["timezone"] if coords else tz,
             "coordinates": {
                 "lat": coords["latitude"] if coords else None,
                 "lon": coords["longitude"] if coords else None,
@@ -299,14 +309,15 @@ class LocationInfoEngine:
         }
         
         return result
+    
 
 # ==================== ENGINE ZONA WAKTU ====================
 class TimeZoneEngine:
     """Dapatkan zona waktu berdasarkan nomor telepon"""
     
     @staticmethod
-    async def get_timezone(phone_number):
-        """Dapatkan zona waktu dari nomor"""
+    def get_timezone(phone_number):
+        """Dapatkan zona waktu dari nomor (SINKRON)"""
         try:
             parsed = phonenumbers.parse(phone_number, None)
             tz_list = timezone.time_zones_for_number(parsed)
@@ -314,7 +325,7 @@ class TimeZoneEngine:
                 return list(tz_list)[0]
         except:
             pass
-        return "Unknown"
+        return "Asia/Jakarta"  # Default
 
 # ==================== ENGINE NUMLOOKUP ====================
 class NumLookupEngine:
