@@ -1,134 +1,121 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-╔══════════════════════════════════════════════════════════╗
-║                 QUANTUM PHONE DIVER v3.0                ║
-║                    CONFIGURATION FILE                   ║
-║                    👑 CREDIT: ZAMXYZ                   ║
-╚══════════════════════════════════════════════════════════╝
+████████╗ ██████╗  ██████╗ ██╗     ███████╗
+╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
+   ██║   ██║   ██║██║   ██║██║     ███████╗
+   ██║   ██║   ██║██║   ██║██║     ╚════██║
+   ██║   ╚██████╔╝╚██████╔╝███████╗███████║
+   ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
 
-📌 CARA ISI API KEY:
-1. Daftar di website masing-masing (GRATIS!)
-2. Copy API key yang didapat
-3. Paste di bawah ini (diapit tanda petik)
-4. Simpan file
+██████╗ ██╗██╗   ██╗███████╗██████╗ 
+██╔══██╗██║██║   ██║██╔════╝██╔══██╗
+██████╔╝██║██║   ██║█████╗  ██████╔╝
+██╔══██╗██║╚██╗ ██╔╝██╔══╝  ██╔══██╗
+██████╔╝██║ ╚████╔╝ ███████╗██║  ██║
+╚═════╝ ╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝
 
-⚠️ JANGAN SHARE API KEY LU KE SIAPAPUN!
-⚠️ KALO KOSONG, FITUR TERKAIT TIDAK AKAN JALAN.
+QUANTUM PHONE DIVER v4.0 - KONFIGURASI API
+Author : mrx-n15 (Zamxyz)
+Repo   : https://github.com/mrx-n15/quantum-phone-diver
+
+⚠️  PENTING! WAJIB ISI API KEY SENDIRI!
+⚠️  JANGAN SHARE FILE INI KE SIAPAPUN!
+⚠️  DILARANG digunakan untuk kejahatan!
 """
 
 import os
 from pathlib import Path
 
-# ==================== API CONFIGURATION ====================
+# ==================== KONFIGURASI API KEY ====================
+# 🔴 WAJIB DIISI! Daftar GRATIS di website masing-masing
+# ============================================================
 
 CONFIG = {
-    # ------------------------------------------------------
-    # NUMLOOKUP API - Untuk data Truecaller-like
-    # Daftar: https://numlookupapi.com
-    # Format: "num_live_xxxxxxxxxxxx"
-    # Gratis: 100 requests/bulan
-    # ------------------------------------------------------
-    "NUMLOOKUP_API_KEY": "",  # <-- ISI DI SINI!
+    # --------------------------------------------------------
+    # 1. NUMLOOKUP API - Data pemilik nomor (Truecaller-style)
+    # --------------------------------------------------------
+    # 📌 Fungsi: Mendapatkan NAMA, GENDER, KOTA, PROVIDER
+    # 🌐 Daftar: https://numlookupapi.com
+    # 💰 Gratis: 100 requests/bulan
+    # ✅ Format: "num_live_xxxxxxxxxxxx"
+    # --------------------------------------------------------
+    "NUMLOOKUP_API_KEY": "",  # <-- ISI API KEY LU DISINI!
     
-    # ------------------------------------------------------
-    # HAVE I BEEN PWNED API - Cek kebocoran data
-    # Daftar: https://haveibeenpwned.com/API/Key
-    # Format: 32 karakter hex (contoh: a1b2c3d4e5f6...)
-    # Gratis: 1500 requests/bulan  
-    # ------------------------------------------------------
-    "HIBP_API_KEY": "",  # <-- ISI DI SINI!
+    # --------------------------------------------------------
+    # 2. HIBP API - Cek kebocoran data (Breach Checker)
+    # --------------------------------------------------------
+    # 📌 Fungsi: Cek email apakah kena hack/data bocor
+    # 🌐 Daftar: https://haveibeenpwned.com/API/Key
+    # 💰 Gratis: 1500 requests/bulan
+    # ✅ Format: 32 karakter hex (a1b2c3d4e5f6...)
+    # --------------------------------------------------------
+    "HIBP_API_KEY": "",  # <-- ISI API KEY LU DISINI!
     
-    # ------------------------------------------------------
-    # HUNTER.IO API - Verifikasi & cari email
-    # Daftar: https://hunter.io/api-keys
-    # Format: 32 karakter alfanumerik
-    # Gratis: 25 requests/bulan
-    # ------------------------------------------------------
-    "HUNTER_IO_API_KEY": "",  # <-- ISI DI SINI!
-    
-    # ------------------------------------------------------
-    # PROXY CONFIGURATION (Opsional)
-    # Gunakan kalo lu pengen anonim
-    # Format: "http://user:pass@host:port" atau "socks5://host:port"
-    # ------------------------------------------------------
-    "USE_PROXY": False,
-    "PROXY_LIST": [
-        # "socks5://127.0.0.1:9050",  # Contoh Tor
-        # "http://proxy1.example.com:8080",
-    ],
-    
-    # ------------------------------------------------------
-    # USER AGENT ROTATION
-    # Biar gak kena blocking
-    # ------------------------------------------------------
-    "USER_AGENTS": [
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0",
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120.0.0.0",
-        "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/537.36",
-        "Mozilla/5.0 (Linux; Android 13; SM-S918B) AppleWebKit/537.36 Chrome/112.0.0.0",
-        "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/121.0",
-    ],
-    
-    # ------------------------------------------------------
-    # TIMEOUT SETTINGS (detik)
-    # ------------------------------------------------------
-    "REQUEST_TIMEOUT": 15,
-    "BATCH_DELAY": 0.5,  # Delay antar request di batch mode
+    # --------------------------------------------------------
+    # 3. OPENWEATHERMAP API - Info cuaca kota (OPSIONAL)
+    # --------------------------------------------------------
+    # 📌 Fungsi: Menampilkan cuaca terkini di lokasi nomor
+    # 🌐 Daftar: https://openweathermap.org/api
+    # 💰 Gratis: 60 requests/menit
+    # ✅ Format: 32 karakter hex
+    # --------------------------------------------------------
+    "WEATHER_API_KEY": "",  # <-- ISI KALAU MAU FITUR CUACA
 }
 
-# ==================== DIRECTORY SETTINGS ====================
+# ==================== VALIDASI ====================
 
-# Buat folder output kalo belum ada
-OUTPUT_DIR = Path("output")
-OUTPUT_DIR.mkdir(exist_ok=True)
-
-# Buat folder logs kalo belum ada
-LOGS_DIR = Path("logs")
-LOGS_DIR.mkdir(exist_ok=True)
-
-# ==================== COLOR SETTINGS ====================
-
-# Matiin warna kalo di Windows yang gak support
-DISABLE_COLORS = False  # Set True kalo di CMD jadul
-
-# ==================== EXPORT SETTINGS ====================
-
-EXPORT_CONFIG = {
-    "csv_delimiter": ",",  # Pemisah CSV (bisa ";" buat Excel Indonesia)
-    "csv_encoding": "utf-8-sig",  # Biar gak jadi mojok di Excel
-    "html_template": "default",  # Template HTML
-    "include_timestamp": True,  # Sertakan timestamp di nama file
-}
-
-# ==================== VERIFIKASI ====================
-
-def verify_config():
-    """Cek konfigurasi, kasih warning kalo ada yang kosong"""
+def validate_config():
+    """Cek konfigurasi dan kasih peringatan"""
     
-    print("╔════════════════════════════════════════════════╗")
-    print("║        🔍 QUANTUM CONFIG VERIFICATION         ║")
-    print("╚════════════════════════════════════════════════╝")
+    print("\n" + "="*60)
+    print("🔍 QUANTUM PHONE DIVER - CONFIG VALIDATOR")
+    print("="*60 + "\n")
     
+    # Cek NumLookup API
     if not CONFIG["NUMLOOKUP_API_KEY"]:
-        print("⚠️  NumLookup API Key: [KOSONG] - Fitur carrier lookup tidak aktif")
+        print("❌ NUMLOOKUP API KEY: [KOSONG]")
+        print("   ⚠️  Fitur data pemilik (nama, gender, kota) TIDAK AKTIF!")
+        print("   ✅ Daftar GRATIS di: https://numlookupapi.com")
+        print("   📝 Format: num_live_xxxxxxxxxxxx\n")
     else:
-        print("✅ NumLookup API Key: [TERISI]")
+        print("✅ NUMLOOKUP API KEY: [TERISI]")
+        print("   ✓ Fitur data pemilik AKTIF\n")
     
+    # Cek HIBP API
     if not CONFIG["HIBP_API_KEY"]:
-        print("⚠️  HIBP API Key: [KOSONG] - Fitur breach check tidak aktif") 
+        print("❌ HIBP API KEY: [KOSONG]")
+        print("   ⚠️  Fitur breach checker (cek kebocoran data) TIDAK AKTIF!")
+        print("   ✅ Daftar GRATIS di: https://haveibeenpwned.com/API/Key")
+        print("   📝 Format: 32 karakter hex\n")
     else:
-        print("✅ HIBP API Key: [TERISI]")
+        print("✅ HIBP API KEY: [TERISI]")
+        print("   ✓ Fitur breach checker AKTIF\n")
     
-    if not CONFIG["HUNTER_IO_API_KEY"]:
-        print("⚠️  Hunter.io API Key: [KOSONG] - Fitur email verifikasi terbatas")
+    # Cek Weather API
+    if not CONFIG["WEATHER_API_KEY"]:
+        print("ℹ️  WEATHER API KEY: [KOSONG]")
+        print("   • Fitur info cuaca TIDAK AKTIF (opsional)")
+        print("   • Daftar di: https://openweathermap.org/api\n")
     else:
-        print("✅ Hunter.io API Key: [TERISI]")
+        print("✅ WEATHER API KEY: [TERISI]")
+        print("   ✓ Fitur cuaca AKTIF\n")
     
-    print("\n📁 Output directory:", OUTPUT_DIR.absolute())
-    print("📁 Logs directory:", LOGS_DIR.absolute())
-    print("\n✅ Verifikasi selesai.\n")
+    print("="*60)
+    print("📌 CARA ISI API KEY:")
+    print("   1. Buka link di atas")
+    print("   2. Register / Sign Up (GRATIS!)")
+    print("   3. Verifikasi email")
+    print("   4. Copy API key yang didapat")
+    print("   5. Paste di file config.py ini")
+    print("="*60 + "\n")
+    
+    return all([CONFIG["NUMLOOKUP_API_KEY"], CONFIG["HIBP_API_KEY"]])
 
-# Uncomment baris di bawah kalo lu mau auto-verifikasi setiap run
-# if __name__ != "__main__":
-#     verify_config()
+# ==================== AUTO-VALIDATE ====================
+
+if __name__ != "__main__":
+    # Auto-validate pas diimport
+    if not all([CONFIG["NUMLOOKUP_API_KEY"], CONFIG["HIBP_API_KEY"]]):
+        print("⚠️  PERINGATAN: API key belum lengkap!")
+        print("   Fitur terbatas. Isi config.py dulu, bang!\n")
